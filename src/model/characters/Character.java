@@ -46,9 +46,9 @@ public abstract class Character {
         this.target = target;
     }
 
-    public Character(String name, int currentHp, int attackDmg) {
+    public Character(String name, int maxHp, int attackDmg) {
         this.name = name;
-        this.currentHp = currentHp;
+        this.maxHp = maxHp;
         this.attackDmg = attackDmg;
     }
 

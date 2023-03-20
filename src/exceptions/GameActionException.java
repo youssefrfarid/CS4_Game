@@ -8,5 +8,6 @@ public class GameActionException extends Exception {
 
     GameActionException(String s) {
         super(s);
+
     }
 }

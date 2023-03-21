@@ -7,11 +7,6 @@ public class TrapCell extends Cell {
         this.trapDamage = (int) ((Math.random() * 3) + 1) * 10;
     }
 
-    public TrapCell(boolean isVisible) {
-        super(isVisible);
-        this.trapDamage = (int) ((Math.random() * 3) + 1) * 10;
-    }
-
     public int getTrapDamage() {
         return trapDamage;
     }

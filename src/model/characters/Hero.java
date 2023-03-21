@@ -17,7 +17,8 @@ public abstract class Hero extends Character {
     }
 
     public void setActionsAvailable(int actionsAvailable) {
-        this.actionsAvailable = actionsAvailable;
+        if (actionsAvailable > maxActions)
+            this.actionsAvailable = actionsAvailable;
     }
 
     public int getMaxActions() {

@@ -31,7 +31,8 @@ public abstract class Character {
     }
 
     public void setCurrentHp(int currentHp) {
-        this.currentHp = currentHp;
+        if (currentHp <= this.maxHp)
+            this.currentHp = currentHp;
     }
 
     public int getAttackDmg() {
@@ -50,6 +51,6 @@ public abstract class Character {
         this.name = name;
         this.maxHp = maxHp;
         this.attackDmg = attackDmg;
+        this.currentHp = maxHp;
     }
-
 }

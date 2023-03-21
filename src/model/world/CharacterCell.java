@@ -1,0 +1,26 @@
+package model.world;
+
+public class CharacterCell extends Cell {
+    private Character character;
+    private boolean isSafe;
+
+    public CharacterCell(Character character, boolean isSafe,boolean isVisible) {
+        super(isVisible);
+        this.character = character;
+        this.isSafe = isSafe;
+    }
+    public Character getCharacter() {
+        return character;
+    }
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+    
+    public boolean isSafe() {
+        return isSafe;
+    }
+    public void setSafe(boolean isSafe) {
+        this.isSafe = isSafe;
+    }
+
+}

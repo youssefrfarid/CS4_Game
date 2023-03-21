@@ -1,6 +1,6 @@
 package model.collectibles;
 
-public class Supply {
-    public Supply(){
+public class Supply implements Collectible {
+    public Supply() {
     }
 }

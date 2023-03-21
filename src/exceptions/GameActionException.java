@@ -1,12 +1,11 @@
 package exceptions;
 
-public class GameActionException extends Exception {
-
-    GameActionException() {
+public abstract class GameActionException extends Exception {
+    public GameActionException() {
 
     }
 
-    GameActionException(String s) {
+    public GameActionException(String s) {
         super(s);
     }
 }

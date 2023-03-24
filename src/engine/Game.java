@@ -15,7 +15,7 @@ public class Game {
     public static ArrayList<Hero> availableHeroes = new ArrayList<Hero>();
     public static ArrayList<Hero> heroes = new ArrayList<Hero>();
     public static ArrayList<Zombie> zombies = new ArrayList<Zombie>(10);
-    public static Cell[][] map;
+    public static Cell[][] map = new Cell[15][15];
 
     public static void loadHeroes(String filePath) throws Exception {
         Scanner sc = new Scanner(new File(filePath));
@@ -53,17 +53,6 @@ public class Game {
                 default:
                     break;
             }
-        }
-    }
-
-    public static void main(String[] args) throws Exception {
-        loadHeroes("Heros.csv");
-        for (int i = 0; i < availableHeroes.size(); i++) {
-            System.out.println(availableHeroes.get(i).getName());
-        }
-
-        for (int i = 0; i < zombies.size(); i++) {
-            System.out.println(zombies.get(i).getName());
         }
     }
 }

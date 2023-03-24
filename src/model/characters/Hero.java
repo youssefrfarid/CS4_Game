@@ -6,19 +6,18 @@ import model.collectibles.Supply;
 import model.collectibles.Vaccine;
 
 public abstract class Hero extends Character {
-    int actionsAvailable;
-    int maxActions;
-    boolean specialAction;
-    ArrayList<Vaccine> vaccineInventory;
-    ArrayList<Supply> supplyInventory;
+    private int actionsAvailable;
+    private int maxActions;
+    private boolean specialAction;
+    private ArrayList<Vaccine> vaccineInventory;
+    private ArrayList<Supply> supplyInventory;
 
     public int getActionsAvailable() {
         return actionsAvailable;
     }
 
     public void setActionsAvailable(int actionsAvailable) {
-        if (actionsAvailable > maxActions)
-            this.actionsAvailable = actionsAvailable;
+        this.actionsAvailable = actionsAvailable;
     }
 
     public int getMaxActions() {

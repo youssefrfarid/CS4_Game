@@ -55,4 +55,33 @@ public class Game {
             }
         }
     }
+
+    public static void startGame(Hero h) {
+        // spawn 5 vaccine 5 supply w 5 traps w 10 zombies randomly but not at (0,0)
+        // load heroes then get a hero from the available heros add it to the heros
+        // array and set its location to (0,0) remove it from available heros
+
+    }
+
+    public static boolean checkWin() {
+        // Has 5 or more heros
+        // collected and used all vaccines 5
+        return true;
+    }
+
+    public static boolean checkGameOver() {
+        // Has less than 5 heros
+        // collected and used all vaccines 5
+        // OR
+        // All heros dead by zombies
+        return true;
+    }
+
+    public static void endTurn() {
+        // All zombies check adjacent cells for heros law la2a ye attack bas yeattack
+        // wahed bas
+        // Reset kol heros actions w special w target
+        // nemsek kol hero w nekhaly el adjacent cells tb2a visible
+        // randomly spawn a zombie f makan fadi
+    }
 }

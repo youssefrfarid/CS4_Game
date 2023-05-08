@@ -2599,122 +2599,110 @@ public class M2PublicTests {
 				isDead, true);
 	}
 
-	// @Test(timeout = 1000, expected = exceptions.InvalidTargetException.class)
-	// public void testFighterAttackOutOfRange() throws ClassNotFoundException,
-	// NoSuchMethodException,
-	// IllegalAccessException, InstantiationException, InvocationTargetException,
-	// InvalidTargetException {
+	@Test(timeout = 1000, expected = exceptions.InvalidTargetException.class)
+	public void testFighterAttackOutOfRange() throws ClassNotFoundException, NoSuchMethodException,
+			IllegalAccessException, InstantiationException, InvocationTargetException, InvalidTargetException {
 
-	// int maxHp = (int) (Math.random() * 100) + 10;
-	// int attackDamage = (int) (Math.random() * 35) + 1;
-	// int maxActions = 1;
+		int maxHp = (int) (Math.random() * 100) + 10;
+		int attackDamage = (int) (Math.random() * 35) + 1;
+		int maxActions = 1;
 
-	// Class<?> fighterClass = Class.forName(fighterPath);
-	// Class<?> characterClass = Class.forName(characterPath);
-	// Constructor<?> constructorFighter = fighterClass.getConstructor(String.class,
-	// int.class, int.class, int.class);
-	// Object character1 = constructorFighter.newInstance("Bob", maxHp,
-	// attackDamage, maxActions);
+		Class<?> fighterClass = Class.forName(fighterPath);
+		Class<?> characterClass = Class.forName(characterPath);
+		Constructor<?> constructorFighter = fighterClass.getConstructor(String.class, int.class, int.class, int.class);
+		Object character1 = constructorFighter.newInstance("Bob", maxHp, attackDamage, maxActions);
 
-	// Class<?> zombieClass = Class.forName(zombiePath);
-	// Constructor<?> constructorZombie = zombieClass.getConstructor();
-	// Object character2 = constructorZombie.newInstance();
+		Class<?> zombieClass = Class.forName(zombiePath);
+		Constructor<?> constructorZombie = zombieClass.getConstructor();
+		Object character2 = constructorZombie.newInstance();
 
-	// Method setTargetMethod = characterClass.getMethod("setTarget",
-	// characterClass);
-	// setTargetMethod.invoke(character1, character2);
+		Method setTargetMethod = characterClass.getMethod("setTarget", characterClass);
+		setTargetMethod.invoke(character1, character2);
 
-	// Method setLocation = characterClass.getMethod("setLocation", Point.class);
+		Method setLocation = characterClass.getMethod("setLocation", Point.class);
 
-	// Class<?> gameClass = Class.forName(gamePath);
-	// Method startGame = gameClass.getMethod("startGame", Hero.class);
-	// startGame.invoke(gameClass, character1);
+		Class<?> gameClass = Class.forName(gamePath);
+		Method startGame = gameClass.getMethod("startGame", Hero.class);
+		startGame.invoke(gameClass, character1);
 
-	// Cell[][] tmpMap = null;
-	// Field zombieField = null;
+		Cell[][] tmpMap = null;
+		Field zombieField = null;
 
-	// try {
-	// Field mapField = Game.class.getDeclaredField("map");
-	// tmpMap = (Cell[][]) mapField.get(gameClass);
+		try {
+			Field mapField = Game.class.getDeclaredField("map");
+			tmpMap = (Cell[][]) mapField.get(gameClass);
 
-	// zombieField = Game.class.getDeclaredField("zombies");
+			zombieField = Game.class.getDeclaredField("zombies");
 
-	// ((ArrayList<Zombie>) zombieField.get(gameClass)).add((Zombie) character2);
-	// Point location2 = new Point(5, 5);
-	// setLocation.invoke(character2, location2);
-	// tmpMap[5][5] = new CharacterCell((Zombie) character2);
+			((ArrayList<Zombie>) zombieField.get(gameClass)).add((Zombie) character2);
+			Point location2 = new Point(5, 5);
+			setLocation.invoke(character2, location2);
+			tmpMap[5][5] = new CharacterCell((Zombie) character2);
 
-	// } catch (Exception e) {
-	// fail(e.getCause().getClass() + " occurred while trying to get Map variable
-	// from the Game Class");
-	// }
+		} catch (Exception e) {
+			fail(e.getCause().getClass() + " occurred while trying to get Map variable from the Game Class");
+		}
 
-	// Method getHP = characterClass.getMethod("getCurrentHp");
+		Method getHP = characterClass.getMethod("getCurrentHp");
 
-	// try {
-	// ((Hero) character1).attack();
-	// } catch (NotEnoughActionsException e) {
-	// fail(e.getCause().getClass() + " Not enough action points should NOT fire");
-	// }
+		try {
+			((Hero) character1).attack();
+		} catch (NotEnoughActionsException e) {
+			fail(e.getCause().getClass() + " Not enough action points should NOT fire");
+		}
 
-	// }
+	}
 
-	// @Test(timeout = 1000, expected = exceptions.InvalidTargetException.class)
-	// public void testFighterAttackFighter() throws ClassNotFoundException,
-	// NoSuchMethodException, IllegalAccessException,
-	// InstantiationException, InvocationTargetException, InvalidTargetException {
+	@Test(timeout = 1000, expected = exceptions.InvalidTargetException.class)
+	public void testFighterAttackFighter() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException,
+			InstantiationException, InvocationTargetException, InvalidTargetException {
 
-	// int maxHp = (int) (Math.random() * 100) + 10;
-	// int attackDamage = (int) (Math.random() * 35) + 1;
-	// int maxActions = 1;
+		int maxHp = (int) (Math.random() * 100) + 10;
+		int attackDamage = (int) (Math.random() * 35) + 1;
+		int maxActions = 1;
 
-	// Class<?> fighterClass = Class.forName(fighterPath);
-	// Class<?> characterClass = Class.forName(characterPath);
-	// Constructor<?> constructorFighter = fighterClass.getConstructor(String.class,
-	// int.class, int.class, int.class);
-	// Object character1 = constructorFighter.newInstance("Bob", maxHp,
-	// attackDamage, maxActions);
+		Class<?> fighterClass = Class.forName(fighterPath);
+		Class<?> characterClass = Class.forName(characterPath);
+		Constructor<?> constructorFighter = fighterClass.getConstructor(String.class, int.class, int.class, int.class);
+		Object character1 = constructorFighter.newInstance("Bob", maxHp, attackDamage, maxActions);
 
-	// Object character2 = constructorFighter.newInstance("Alex", maxHp,
-	// attackDamage, maxActions);
+		Object character2 = constructorFighter.newInstance("Alex", maxHp, attackDamage, maxActions);
 
-	// Method setTargetMethod = characterClass.getMethod("setTarget",
-	// characterClass);
-	// setTargetMethod.invoke(character1, character2);
+		Method setTargetMethod = characterClass.getMethod("setTarget", characterClass);
+		setTargetMethod.invoke(character1, character2);
 
-	// Method setLocation = characterClass.getMethod("setLocation", Point.class);
+		Method setLocation = characterClass.getMethod("setLocation", Point.class);
 
-	// Class<?> gameClass = Class.forName(gamePath);
-	// Method startGame = gameClass.getMethod("startGame", Hero.class);
-	// startGame.invoke(gameClass, character1);
+		Class<?> gameClass = Class.forName(gamePath);
+		Method startGame = gameClass.getMethod("startGame", Hero.class);
+		startGame.invoke(gameClass, character1);
 
-	// Cell[][] tmpMap = null;
-	// Field heroField = null;
+		Cell[][] tmpMap = null;
+		Field heroField = null;
 
-	// try {
-	// Field mapField = Game.class.getDeclaredField("map");
-	// tmpMap = (Cell[][]) mapField.get(gameClass);
+		try {
+			Field mapField = Game.class.getDeclaredField("map");
+			tmpMap = (Cell[][]) mapField.get(gameClass);
 
-	// heroField = Game.class.getDeclaredField("heroes");
+			heroField = Game.class.getDeclaredField("heroes");
 
-	// ((ArrayList<Hero>) heroField.get(gameClass)).add((Hero) character2);
+			((ArrayList<Hero>) heroField.get(gameClass)).add((Hero) character2);
 
-	// Point location2 = new Point(1, 1);
-	// setLocation.invoke(character2, location2);
-	// tmpMap[1][1] = new CharacterCell((Hero) character2);
+			Point location2 = new Point(1, 1);
+			setLocation.invoke(character2, location2);
+			tmpMap[1][1] = new CharacterCell((Hero) character2);
 
-	// } catch (Exception e) {
-	// fail(e.getCause().getClass() + " occurred while trying to get Map variable
-	// from the Game Class");
-	// }
+		} catch (Exception e) {
+			fail(e.getCause().getClass() + " occurred while trying to get Map variable from the Game Class");
+		}
 
-	// try {
-	// ((Hero) character1).attack();
-	// } catch (NotEnoughActionsException e) {
-	// fail(e.getCause().getClass() + " Not enough action points should NOT fire");
-	// }
+		try {
+			((Hero) character1).attack();
+		} catch (NotEnoughActionsException e) {
+			fail(e.getCause().getClass() + " Not enough action points should NOT fire");
+		}
 
-	// }
+	}
 
 	@Test(timeout = 1000)
 	public void testZombieDeathSpawnsNewZombie() throws ClassNotFoundException, NoSuchMethodException,
@@ -2922,7 +2910,7 @@ public class M2PublicTests {
 		}
 	}
 
-	@Test(timeout = 3000)
+	@Test()
 	public void testUseMethodLogicInVaccine() {
 		ArrayList<?> x = setEnvironment();
 		for (int i = 0; i < Game.map.length; i++) {

@@ -78,12 +78,18 @@ public abstract class Hero extends Character {
         // trap? yakhod el dmg wl trap te2leb character cell b null
         // supply? pickupSupply w te2leb character cell b null
         // CharacterCell ? law fadya yerohlaha w law msh fadya 8aleban msh hayrooh
+
         if (this.getActionsAvailable() == 0)
             throw new NotEnoughActionsException("You don't have enough action points");
 
         int startingX = (int) this.getLocation().getX();
         int startingY = (int) this.getLocation().getY();
 
+        if (this.getCurrentHp() == 0) {
+            CharacterCell a = (CharacterCell) Game.map[startingX][startingY];
+            a.setCharacter(null);
+            return;
+        }
         int newX, newY;
 
         switch (d) {
@@ -156,8 +162,6 @@ public abstract class Hero extends Character {
         // when supply is used
         if (this.getSupplyInventory().size() == 0)
             throw new NoAvailableResourcesException("You don't have supplies");
-
-        this.setSpecialAction(true);
     }
 
     public void cure() throws NoAvailableResourcesException, NotEnoughActionsException, InvalidTargetException {
@@ -180,25 +184,25 @@ public abstract class Hero extends Character {
                     if (this.getVaccineInventory().size() == 0)
                         throw new NoAvailableResourcesException("You don't have any vaccines");
                     this.getVaccineInventory().get(0).use(this);
-
-                    Point p = c.getCharacter().getLocation();
-                    int randomIndex = Game.generateRandomNumber(Game.availableHeroes.size());
-
-                    Hero h = Game.availableHeroes.get(randomIndex);
-                    Game.heroes.add(h);
-                    Game.availableHeroes.remove(randomIndex);
-                    h.setLocation(new Point(p.x, p.y));
-                    Game.map[p.x][p.y] = new CharacterCell(h);
-                    Game.map[p.x][p.y].setVisible(true);
-
+                    this.setActionsAvailable(this.getActionsAvailable() - 1);
+                    return;
                 }
             }
+        }
+
+        if (Game.isAdjacent(this, this.getTarget()) && this.getTarget() instanceof Zombie) {
+            if (this.getVaccineInventory().size() == 0)
+                throw new NoAvailableResourcesException("You don't have any vaccines");
+            this.getVaccineInventory().get(0).use(this);
+            this.setActionsAvailable(this.getActionsAvailable() - 1);
+            return;
         }
         throw new InvalidTargetException("Target not in adjacent cells");
         // remove el zombie from game w add a hero makano
     }
 
     public void onCharacterDeath() {
+        super.onCharacterDeath();
         Game.heroes.remove(this);
         Point p = this.getLocation();
         CharacterCell c = (CharacterCell) Game.map[p.x][p.y];

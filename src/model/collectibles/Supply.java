@@ -11,6 +11,7 @@ public class Supply implements Collectible {
     }
 
     public void use(Hero h) {
+        h.setSpecialAction(true);
         h.getSupplyInventory().remove(this);
     }
 }

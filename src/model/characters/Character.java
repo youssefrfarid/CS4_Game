@@ -66,7 +66,8 @@ public abstract class Character {
     }
 
     public void onCharacterDeath() {
-        Game.map[this.getLocation().x][this.getLocation().y] = new CharacterCell(null);
+        CharacterCell c = (CharacterCell) Game.map[this.getLocation().x][this.getLocation().y];
+        c.setCharacter(null);
     }
 
     public void attack() throws InvalidTargetException, NotEnoughActionsException {
@@ -98,6 +99,15 @@ public abstract class Character {
                         c.getCharacter().onCharacterDeath();
                     return;
                 }
+            }
+        }
+        if (this instanceof Hero) {
+            if (Game.isAdjacent(this, this.getTarget()) && this.getTarget() instanceof Zombie) {
+                this.getTarget().setCurrentHp(this.getTarget().getCurrentHp() - this.getAttackDmg());
+                this.getTarget().defend(this);
+                if (this.getTarget().getCurrentHp() == 0)
+                    this.getTarget().onCharacterDeath();
+                return;
             }
         }
         throw new InvalidTargetException("Cannot attack that character");

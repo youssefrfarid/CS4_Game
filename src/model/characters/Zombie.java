@@ -1,8 +1,10 @@
 package model.characters;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import engine.Game;
+import model.world.Cell;
 import model.world.CharacterCell;
 
 public class Zombie extends Character {
@@ -13,21 +15,36 @@ public class Zombie extends Character {
     }
 
     public void onCharacterDeath() {
+        super.onCharacterDeath();
         Game.zombies.remove(this);
-        int x, y;
+        int oldX = this.getLocation().x;
+        int oldY = this.getLocation().y;
+        Point p = Game.getEmptyCell();
         while (true) {
-            x = Game.generateRandomNumber(15);
-            y = Game.generateRandomNumber(15);
-            if (Game.map[x][y] instanceof CharacterCell) {
-                CharacterCell c = (CharacterCell) Game.map[x][y];
-                if (c.getCharacter() == null)
-                    break;
+            if (p.x == oldX && p.y == oldY) {
+                p = Game.getEmptyCell();
             }
+
+            boolean mshTmm = false;
+            ArrayList<Cell> adjacents = Game.getAdjacentCells(p.x, p.y);
+            for (Cell cell : adjacents) {
+                if (cell instanceof CharacterCell) {
+                    CharacterCell c = (CharacterCell) cell;
+                    if (c.getCharacter() != null && c.getCharacter() instanceof Zombie) {
+                        p = Game.getEmptyCell();
+                        mshTmm = true;
+                        break;
+                    }
+                }
+            }
+            if (!mshTmm)
+                break;
         }
+
         Zombie z = new Zombie();
         Game.zombies.add(z);
-        z.setLocation(new Point(x, y));
-        CharacterCell c = (CharacterCell) Game.map[x][y];
+        z.setLocation(p);
+        CharacterCell c = (CharacterCell) Game.map[p.x][p.y];
         c.setCharacter(z);
     }
 

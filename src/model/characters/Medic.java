@@ -18,6 +18,12 @@ public class Medic extends Hero {
         if (this.getTarget() instanceof Zombie) {
             throw new InvalidTargetException("Cannot heal a zombie");
         }
+        if (this.getTarget() == null) {
+            throw new InvalidTargetException("Cannot heal nothing");
+        }
+        if (this.getTarget().getCurrentHp() == this.getTarget().getMaxHp())
+            throw new InvalidTargetException("Cannot heal a full hp character");
+
         super.useSpecial();
         int x = getLocation().x;
         int y = getLocation().y;
@@ -34,6 +40,13 @@ public class Medic extends Hero {
                     return;
                 }
             }
+        }
+
+        if (Game.isAdjacent(this, this.getTarget())) {
+            this.getTarget().setCurrentHp(this.getTarget().getMaxHp());
+            this.getSupplyInventory().get(0).use(this);
+            this.setSpecialAction(false);
+            return;
         }
         throw new InvalidTargetException("Hero not close enough");
     }

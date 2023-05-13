@@ -217,20 +217,9 @@ public class Game {
     }
 
     public static boolean checkGameOver() {
-        if (getVaccinesMapCount() > 0)
-            return false;
-
-        if (getVaccineInventoryCount() > 0)
-            return false;
         // Has less than 5 heros
         // collected and used all vaccines 5
-        if (heroes.size() < 5 || getVaccinesMapCount() == 0 && getVaccineInventoryCount() == 0)
-            return true;
-        if (getVaccinesMapCount() == 0 && getVaccineInventoryCount() == 0 && !zombies.isEmpty())
-            return true;
-        // OR
-        // All heros dead by zombies
-        if (heroes.size() == 0)
+        if ((getVaccinesMapCount() == 0 && getVaccineInventoryCount() == 0) || (heroes.isEmpty()))
             return true;
         return false;
     }
@@ -338,17 +327,5 @@ public class Game {
 
     public static boolean isAdjacent(Character a, Character b) {
         return (int) a.getLocation().distance(b.getLocation().getX(), b.getLocation().getY()) <= 1;
-    }
-
-    public static void main(String[] args) throws Exception {
-        // loadHeroes("Heros.csv");
-
-        // while (true) {
-        // startGame(availableHeroes.get(0));
-        // System.out.println(getVaccinesMapCount());
-        // if (getVaccinesMapCount() != 5)
-        // break;
-        // Game.map = new Cell[15][15];
-        // }
     }
 }

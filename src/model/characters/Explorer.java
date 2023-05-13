@@ -12,7 +12,7 @@ public class Explorer extends Hero {
 
     public void useSpecial() throws NoAvailableResourcesException, NotEnoughActionsException, InvalidTargetException {
         if (this.isSpecialAction())
-            throw new NotEnoughActionsException("You already used the special action");
+            throw new NotEnoughActionsException("You already used the special action, cannot light the map again");
         super.useSpecial();
         for (int i = 0; i < Game.map.length; i++) {
             for (int j = 0; j < Game.map.length; j++) {

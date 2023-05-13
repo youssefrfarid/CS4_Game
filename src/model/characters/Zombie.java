@@ -21,7 +21,7 @@ public class Zombie extends Character {
         int oldY = this.getLocation().y;
         Point p = Game.getEmptyCell();
         while (true) {
-            if (p.x == oldX && p.y == oldY) {
+            while (p.x == oldX && p.y == oldY) {
                 p = Game.getEmptyCell();
             }
 

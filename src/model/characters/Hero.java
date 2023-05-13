@@ -126,6 +126,7 @@ public abstract class Hero extends Character {
             if (this.getCurrentHp() == 0) {
                 this.onCharacterDeath();
                 Game.map[newX][newY] = new CharacterCell(null);
+                Game.map[newX][newY].setVisible(true);
                 return;
             }
         }
@@ -138,7 +139,6 @@ public abstract class Hero extends Character {
 
         CharacterCell oldCell = (CharacterCell) Game.map[startingX][startingY];
         oldCell.setCharacter(null);
-        oldCell.setVisible(true);
         CharacterCell newCell = new CharacterCell(this);
         newCell.setVisible(true);
         Game.map[newX][newY] = newCell;

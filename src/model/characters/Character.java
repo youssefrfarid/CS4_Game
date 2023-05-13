@@ -101,6 +101,7 @@ public abstract class Character {
                 }
             }
         }
+
         if (this instanceof Hero) {
             if (Game.isAdjacent(this, this.getTarget()) && this.getTarget() instanceof Zombie) {
                 this.getTarget().setCurrentHp(this.getTarget().getCurrentHp() - this.getAttackDmg());

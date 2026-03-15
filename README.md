@@ -15,10 +15,6 @@ A turn-based zombie survival game implemented in Java. Players select a hero and
 ```
 .
 ├── heroes.csv               Hero roster loaded at game start
-├── test_Exp.csv             Test data — Explorer heroes
-├── test_Fighters.csv        Test data — Fighter heroes
-├── test_MEDs.csv            Test data — Medic heroes
-├── test_heros.csv           Test data — mixed hero roster
 ├── src/
 │   ├── engine/
 │   │   └── Game.java        Core game loop, map initialisation, win/loss logic
@@ -47,11 +43,11 @@ A turn-based zombie survival game implemented in Java. Players select a hero and
 │   │       ├── CollectibleCell.java
 │   │       └── TrapCell.java
 │   └── tests/
-│       ├── GameTests.java
-│       ├── GamePublicTests.java
-│       └── GameExtendedTests.java
-└── .classpath
+│       ├── M1PublicTests.java
+│       └── M2PublicTests.java
 ```
+
+> **Note:** `test_Exp.csv`, `test_Fighters.csv`, `test_MEDs.csv`, and `test_heros.csv` are generated at runtime by the JUnit tests and are not committed to the repository.
 
 ## Prerequisites
 
@@ -68,7 +64,7 @@ A turn-based zombie survival game implemented in Java. Players select a hero and
    git clone https://github.com/youssefrfarid/CS4_Game.git
    ```
 2. Open Eclipse → **File → Open Projects from File System** → select the cloned folder.
-3. Eclipse will auto-detect `.classpath` and configure the build path, including JUnit 5.
+3. Configure the build path manually (add JUnit 5) if `.classpath` is not present.
 4. Right-click `src/engine/Game.java` → **Run As → Java Application** to start the game engine.
 5. To run tests: right-click `src/tests/` → **Run As → JUnit Test**.
 
@@ -86,7 +82,7 @@ java -cp bin engine.Game
 
 ## Hero Roster Format
 
-The `heroes.csv` file (and test CSVs) follow this format:
+The `heroes.csv` file follows this format:
 
 ```
 Name,Type,MaxHP,MaxActions,AttackDamage

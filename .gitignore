@@ -1,0 +1,36 @@
+# Compiled class files
+*.class
+
+# Eclipse
+.settings/
+*.launch
+
+# Build output
+/bin/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# Windows
+Desktop.ini
+Thumbs.db
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear

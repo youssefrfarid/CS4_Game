@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "11"
+      - name: Compile source
+        run: |
+          mkdir -p bin
+          javac -d bin \
+            src/exceptions/*.java \
+            src/model/collectibles/*.java \
+            src/model/world/*.java \
+            src/model/characters/*.java \
+            src/engine/*.java

@@ -13,14 +13,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: temurin
           java-version: "11"
-      - name: Compile source
+          distribution: "temurin"
+      - name: Compile
         run: |
-          mkdir -p bin
           javac -d bin \
             src/exceptions/*.java \
             src/model/collectibles/*.java \
             src/model/world/*.java \
             src/model/characters/*.java \
             src/engine/*.java
+      - name: Run Tests
+        run: |
+          javac -cp bin:. -d bin src/tests/*.java
+          java -cp bin:. org.junit.runner.JUnitCore tests.M1PublicTests tests.M2PublicTests

@@ -1,39 +1,48 @@
-# Compiled class files
-*.class
-
-# Eclipse
-.settings/
-*.launch
-
-# Build output
-/bin/
-
-# macOS
+# ========================
+# OS Generated Files
+# ========================
 .DS_Store
-.AppleDouble
-.LSOverride
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 __MACOSX/
 
-# Windows
-Desktop.ini
-Thumbs.db
-
-# IntelliJ IDEA
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
 .idea/
 *.iml
 *.iws
 *.ipr
+.settings/
+*.launch
+*.swp
+*.swo
+*~
 
-# VS Code
-.vscode/
-
-# Logs
-*.log
-
-# Runtime-generated test data
-test_*.csv
-
-# Package files
+# ========================
+# Java
+# ========================
+*.class
+/bin/
 *.jar
 *.war
 *.ear
+
+# ========================
+# Logs & Temporary
+# ========================
+*.log
+test_*.csv
+
+# ========================
+# Archives
+# ========================
+*.zip
+*.tar.gz
+*.rar
